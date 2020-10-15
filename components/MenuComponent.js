@@ -12,6 +12,7 @@ function Menu(props) {
             title = {item.name}
             subtitle = {item.description}
             hideChevron = {true}    //the side arrow for each list, is now hidden
+            onPress={ () => props.onPress(item.id)}
             leftAvatar= {{source: require('./images/uthappizza.png')}}   // image source, one of the way to show image
             
             />
