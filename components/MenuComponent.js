@@ -1,33 +1,52 @@
-import React, {Component } from 'react';
-import {View, FlatList} from 'react-native';        //flat list helps to crate a list of item
-import {ListItem} from 'react-native-elements';     //List Item is the list of the items i.e here dishes
+import React, { Component } from 'react';
+import { View, FlatList } from 'react-native';        //flat list helps to crate a list of item
+import { ListItem } from 'react-native-elements';     //List Item is the list of the items i.e here dishes
+import { DISHES } from '../shared/dishes';
 
 
-function Menu(props) {
+class Menu extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            dishes: DISHES
+        };
+
+    }
+
+    //each navigation customization
+    static navigationOptions = {
+        title: 'Menu'
+    };
+
+
+    render() {
+
+        const {navigate} = this.props.navigation;   //extracting out the navigation property of the props.
+
+        const renderMenuItem = ({ item, index }) => {
+            return (
+                <ListItem
+                    key={index}
+                    title={item.name}
+                    subtitle={item.description}
+                    hideChevron={true}    //the side arrow for each list, is now hidden
+                    onPress={() => navigate('Dishdetail', {dishId: item.id})}  //passing inforamtion to dishdetail compnenet using navigate , and also passing the other prams
+                    leftAvatar={{ source: require('./images/uthappizza.png') }}   // image source, one of the way to show image
+
+                />
+            );
+        }
+
     
-    const renderMenuItem = ({item,index})   => {
-        return(
-            <ListItem 
-            key = {index}
-            title = {item.name}
-            subtitle = {item.description}
-            hideChevron = {true}    //the side arrow for each list, is now hidden
-            onPress={ () => props.onPress(item.id)}
-            leftAvatar= {{source: require('./images/uthappizza.png')}}   // image source, one of the way to show image
-            
+        return (
+            <FlatList
+                data={this.state.dishes}
+                renderItem={renderMenuItem}         //how to render each item in the list 
+                keyExtractor={item => item.id.toString()}
             />
         );
     }
-
-
-
-    return(
-        <FlatList 
-            data = {props.dishes} 
-            renderItem = {renderMenuItem}         //how to render each item in the list 
-            keyExtractor = {item => item.id.toString()}
-        />
-    );
 
 }
 
