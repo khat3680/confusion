@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, FlatList, Text } from 'react-native';        //flat list helps to crate a list of item
 import { Card } from 'react-native-elements';     //List Item is the list of the items i.e here dishes
 import { DISHES } from '../shared/dishes';
+import {} from 'react-navigation';
 
 
 function RenderDish(props) {
@@ -32,17 +33,18 @@ class Dishdetail extends Component {
         };
     }
 
+
      //each navigation customization
-     static navigationOptions = {
-        title: 'Dish Details'
+    static navigationOptions = {
+        title: 'Dish Details',
     };
 
     render() {
 
-        const dishId = this.props.navigation.getParam('dishId',''); 
+        const dishId = this.props.route.params.dishId; //some other thing
 
         return (
-            <RenderDish dish={this.state.dishes[+dishId]} />
+            <RenderDish dish={this.state.dishes[+dishId]} />        // plus sign is just converting string to number
 
         );
     }

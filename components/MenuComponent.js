@@ -3,7 +3,6 @@ import { View, FlatList } from 'react-native';        //flat list helps to crate
 import { ListItem } from 'react-native-elements';     //List Item is the list of the items i.e here dishes
 import { DISHES } from '../shared/dishes';
 
-
 class Menu extends Component {
 
     constructor(props) {
@@ -22,8 +21,6 @@ class Menu extends Component {
 
     render() {
 
-        const {navigate} = this.props.navigation;   //extracting out the navigation property of the props.
-
         const renderMenuItem = ({ item, index }) => {
             return (
                 <ListItem
@@ -31,12 +28,14 @@ class Menu extends Component {
                     title={item.name}
                     subtitle={item.description}
                     hideChevron={true}    //the side arrow for each list, is now hidden
-                    onPress={() => navigate('Dishdetail', {dishId: item.id})}  //passing inforamtion to dishdetail compnenet using navigate , and also passing the other prams
+                    onPress={() => this.props.navigation.navigate('Dishdetail', {dishId: item.id})}  //passing inforamtion to dishdetail compnenet using navigate , and also passing the other prams
                     leftAvatar={{ source: require('./images/uthappizza.png') }}   // image source, one of the way to show image
 
                 />
             );
         }
+
+        const {navigate} = this.props.navigation;   //extracting out the navigation property of the props.
 
     
         return (
