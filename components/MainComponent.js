@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 
 
 
-
 import Menu from './MenuComponent';
 import Dishdetail from './DishdetailComponent';
 
