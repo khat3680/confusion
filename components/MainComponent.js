@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Platform, useWindowDimensions } from 'react-native';        //flat list helps to crate a list of item
+import { View, Platform } from 'react-native';        //flat list helps to crate a list of item
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -17,7 +17,7 @@ const MenuNavigator = createStackNavigator();
 const HomeNavigator = createStackNavigator();
 const MainNavigator = createDrawerNavigator();
 
-function MyStack() {
+function MyMenuStack() {
 
     return (
         
@@ -43,7 +43,7 @@ function MyHomeStack() {
                     headerTintColor: '#fff',
                     headerTitleStyle: { color: '#fff' }
                 }}>
-                <HomeNavigator.Screen name="Menu" component={Home} />
+                <HomeNavigator.Screen name="Home" component={Home} />
             </HomeNavigator.Navigator>
         
     );
@@ -59,7 +59,7 @@ function MyDrawer() {
                 drawerStyle={{ backgroundColor: '#D1C4E9' }}
             >
                 <MainNavigator.Screen name="Home" component={MyHomeStack} />
-                <MainNavigator.Screen name="Menu" component={MyStack} />
+                <MainNavigator.Screen name="Menu" component={MyMenuStack} />
             </MainNavigator.Navigator>
         </NavigationContainer >
 
