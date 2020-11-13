@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';        //flat list helps to crate a list of item
+import { FlatList } from 'react-native';        //flat list helps to crate a list of item
 import { ListItem } from 'react-native-elements';     //List Item is the list of the items i.e here dishes
 import { DISHES } from '../shared/dishes';
 
@@ -18,7 +18,7 @@ class Menu extends Component {
         title: 'Menu'
     };
 
-
+ 
     render() {
 
         const renderMenuItem = ({ item, index }) => {
@@ -35,7 +35,6 @@ class Menu extends Component {
             );
         }
 
-        const {navigate} = this.props.navigation;   //extracting out the navigation property of the props.
 
     
         return (
