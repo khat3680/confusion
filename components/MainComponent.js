@@ -3,8 +3,7 @@ import { View, Platform, TouchableOpacity, Image, StyleSheet, ScrollView, Text }
 import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
 import { SafeAreaView } from 'react-navigation';
 import {
-    createDrawerNavigator,
-    DrawerContentScrollView, DrawerItemList
+    createDrawerNavigator, DrawerContentScrollView, DrawerItemList
 } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Icon } from 'react-native-elements';
@@ -15,6 +14,26 @@ import Dishdetail from './DishdetailComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 
+import { connect } from 'react-redux';
+import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+
+const mapStateToProps = state => {
+    return {
+        dishes: state.dishes,
+        comments: state.comments,
+        promotions: state.promotions,
+        leaders: state.leaders
+    }
+}
+
+
+const mapDispatchToProps = dispatch => ({
+
+    fetchDishes: () => dispatch(fetchDishes()),
+    fetchComments: () => dispatch(fetchComments()),
+    fetchPromos: () => dispatch(fetchPromos()),
+    fetchLeaders: () => dispatch(fetchLeaders()),
+})
 
 
 // we are making a ManuNavigator, which is a Stack Navigator so we can use it in our menu componenet
@@ -211,6 +230,15 @@ function MyDrawer() {
 
 class Main extends Component {
 
+    componentDidMount() {
+        this.props.fetchDishes();
+        this.props.fetchComments();
+        this.props.fetchPromos();
+        this.props.fetchLeaders();
+      }
+      
+
+
     render() {
         return (
             <View style={{ flex: 1, paddingTop: Platform.OS == 'ios' ? 0 : Expo.Constants.statusBarHeight }} >
@@ -244,4 +272,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default Main;
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
