@@ -10,7 +10,8 @@ function RenderItem(props) {
 
     if (item != null) {
         return (
-            <Card featuredTitle={item.name}
+            <Card
+                featuredTitle={item.name}
                 featuredSubtitle={item.designation}
                 image={require('./images/uthappizza.png')}
             >
